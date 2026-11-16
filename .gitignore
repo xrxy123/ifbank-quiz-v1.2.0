@@ -1,0 +1,12 @@
+# 本地 SDK 路径（各环境不同，绝不提交）
+local.properties
+
+# Gradle
+.gradle/
+build/
+*.iml
+.idea/
+
+# 系统文件
+.DS_Store
+Thumbs.db

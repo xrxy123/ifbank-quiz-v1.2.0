@@ -1,0 +1,4 @@
+// 根构建文件：仅声明 Android Gradle Plugin，仓库由 settings.gradle 统一声明
+plugins {
+    id 'com.android.application' version '8.5.2' apply false
+}

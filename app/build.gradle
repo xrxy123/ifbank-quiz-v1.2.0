@@ -1,0 +1,52 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.ifbank.quiz'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.ifbank.quiz"
+        minSdk 21
+        targetSdk 34
+        versionCode 3
+        versionName "1.2.0"
+    }
+
+    // 固定签名：保证每次构建签名一致，可直接覆盖安装旧版本
+    signingConfigs {
+        release {
+            storeFile file('ifbank.jks')
+            storeType 'PKCS12'
+            storePassword 'ifbank2026'
+            keyAlias 'ifbank'
+            keyPassword 'ifbank2026'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.release
+        }
+        debug {
+            signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    aaptOptions {
+        // 音频/网页资源原样打包，不压缩，便于 WebView 直接读取
+        noCompress 'mp3', 'wav', 'html', 'js', 'css', 'json'
+    }
+}
+
+dependencies {
+    // 无第三方依赖：使用系统 Activity + Material 主题，避免 Kotlin stdlib 冲突
+}
